@@ -1,4 +1,4 @@
-import { ArrowUpRight, ArrowDownRight, Clock, AlertTriangle, CheckCircle2, Ticket } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Clock, AlertTriangle, CheckCircle2, Ticket, Activity } from 'lucide-react';
 
 export function KPICards() {
   const cards = [

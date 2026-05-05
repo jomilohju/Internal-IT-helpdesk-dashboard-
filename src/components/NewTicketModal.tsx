@@ -1,5 +1,5 @@
 import { X, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 interface NewTicketModalProps {
   isOpen: boolean;
@@ -14,7 +14,7 @@ export function NewTicketModal({ isOpen, onClose }: NewTicketModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Simulate submission
     setTimeout(() => {
