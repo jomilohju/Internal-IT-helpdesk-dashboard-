@@ -15,6 +15,9 @@ import { SoftwareLicenses } from './components/SoftwareLicenses';
 import { ActiveDirectory } from './components/ActiveDirectory';
 import { NetworkStatus } from './components/NetworkStatus';
 import { KnowledgeBase } from './components/KnowledgeBase';
+import { SLAAlertBanner } from './components/SLAAlertBanner';
+import { AIInsights } from './components/AIInsights';
+import { WorkloadManagement } from './components/WorkloadManagement';
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -35,12 +38,22 @@ export default function App() {
           />
           
           {activePage === 'Dashboard' && (
-            <>
+            <div className="space-y-8">
               {activeTab === 'overview' && (
                 <>
+                  <SLAAlertBanner />
                   <KPICards />
-                  <DataVisualizations />
-                  <TicketList filter="all" title="Active Helpdesk Queue" subtitle="Recently updated tickets" />
+                  
+                  <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+                    <div className="xl:col-span-3 space-y-8">
+                      <DataVisualizations />
+                      <TicketList filter="all" title="Active Helpdesk Queue" subtitle="Recently updated tickets" />
+                    </div>
+                    <div className="xl:col-span-1 space-y-8">
+                      <AIInsights />
+                      <WorkloadManagement />
+                    </div>
+                  </div>
                 </>
               )}
 
@@ -51,7 +64,7 @@ export default function App() {
               {activeTab === 'resolved' && (
                 <TicketList filter="resolved" title="Resolved (30 Days)" subtitle="Tickets closed in the last 30 days." />
               )}
-            </>
+            </div>
           )}
 
           {activePage === 'Tickets' && <TicketsPage />}

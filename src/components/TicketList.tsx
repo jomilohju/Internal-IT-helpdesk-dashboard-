@@ -1,4 +1,4 @@
-import { Download, MoreHorizontal } from 'lucide-react';
+import { Download, MoreHorizontal, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface TicketListProps {
   filter?: 'all' | 'open' | 'resolved';
@@ -129,8 +129,25 @@ export function TicketList({
                 {/* Subject & ID */}
                 <td className="px-6 py-4">
                   <div className="flex flex-col">
-                    <span className="text-sm text-neutral-200 font-medium">{ticket.subject}</span>
-                    <span className="text-xs text-zinc-500 mt-0.5 font-mono">{ticket.id}</span>
+                    <div className="flex items-center gap-2">
+                       <span className="text-sm text-neutral-200 font-medium group-hover:text-violet-400 transition-colors">{ticket.subject}</span>
+                       {displayTickets.indexOf(ticket) % 3 === 0 && (
+                          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500/10 text-[8px] font-bold text-red-500 uppercase tracking-tighter shadow-[0_0_5px_rgba(239,68,68,0.2)]">
+                            <TrendingDown className="h-2 w-2" />
+                            FRUSTRATED
+                          </div>
+                       )}
+                       {displayTickets.indexOf(ticket) % 5 === 0 && (
+                          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-500/10 text-[8px] font-bold text-green-500 uppercase tracking-tighter shadow-[0_0_5px_rgba(16,185,129,0.2)]">
+                            <TrendingUp className="h-2 w-2" />
+                            POSITIVE
+                          </div>
+                       )}
+                    </div>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-[10px] text-zinc-500 font-mono opacity-60">{ticket.id}</span>
+                      <span className="text-[10px] px-1.5 py-0.25 bg-zinc-800 rounded text-zinc-400 border border-zinc-700/50">AI Summary Available</span>
+                    </div>
                   </div>
                 </td>
 
